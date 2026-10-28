@@ -1,0 +1,15 @@
+# Supabase (plan gratis) pausa el proyecto tras 7 días sin uso.
+# Esta tarea hace una consulta mínima cada 3 días para que siga despierto.
+name: Mantener Supabase activo
+on:
+  schedule:
+    - cron: "17 7 */3 * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -fsS -X POST "https://medktvjflytscrrhyoww.supabase.co/rest/v1/rpc/ping" \
+            -H "apikey: sb_publishable_O4Rp9otcN6Dqzb3WIXy7bQ_SSb3ldxw" \
+            -H "Content-Type: application/json" -d '{}'
