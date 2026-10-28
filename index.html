@@ -90,7 +90,7 @@ label input{margin-top:6px}
 .lobby{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
 .joinbox,.qrbox{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
 .k{margin:0;font-family:var(--cond);font-size:clamp(14px,1.8vw,18px);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
-.url{margin:2px 0 10px;font-size:clamp(20px,2.8vw,32px);word-break:break-all}
+.url{margin:2px 0 10px;font-size:clamp(20px,2.8vw,32px);overflow-wrap:anywhere}
 .pinbox{margin-top:4px;font-family:var(--sten);font-weight:700;font-size:clamp(60px,10vw,128px);line-height:1;letter-spacing:.08em}
 #qr{padding:10px;background:#f8f0dc;border:2px solid var(--ink)}
 #qr img,#qr canvas{display:block;width:min(230px,60vw);height:auto}
@@ -327,7 +327,7 @@ function hostResume(){H=st.get("lq_host");if(!H)return hostSetup();hostConnect()
 
 function hostLobby(){H.ph="lobby";hsave();const url=BASE+"?pin="+H.pin;
  view(`<div class="hbar"><span>${G[H.k].t} · ${H.qs.length} preguntas · ${H.dur} s</span>${liveTag()}${fsBtn()}</div>
-<div class="lobby"><div class="paper joinbox"><p class="k">Entrad en</p><p class="url">${esc(SHORT)}</p><p class="k">y escribid el PIN</p><div class="pinbox">${fmtPin(H.pin)}</div></div>
+<div class="lobby"><div class="paper joinbox"><p class="k">Entrad en</p><p class="url">${esc(SHORT).replace("/","/<wbr>")}</p><p class="k">y escribid el PIN</p><div class="pinbox">${fmtPin(H.pin)}</div></div>
 <div class="paper qrbox"><div id="qr"></div><p class="k">o escanead el código</p></div></div>
 <div class="lobbar"><h2><span id="np">0</span> jugadores</h2><button class="p big-btn" data-a="hstart" id="go" disabled>¡Empezar! ▸</button></div>
 <p class="hint">Toca un nombre para expulsarlo</p><div class="names" id="names"></div><a class="back" data-a="hcancel">◂ Cancelar partida</a>`);
